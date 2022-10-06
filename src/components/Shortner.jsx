@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import LoadingIcon from "./LoadingIcon";
 
 const Shortner = () => {
@@ -33,7 +33,7 @@ const Shortner = () => {
   };
 
   return (
-    <div className="mt-10 sm:mt-12">
+    <div className="mt-20 sm:mt-12">
       <form onSubmit={getShortURL}>
         <div className="sm:flex">
           <div className="min-w-0 flex-1">
