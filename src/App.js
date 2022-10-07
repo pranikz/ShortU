@@ -12,7 +12,7 @@ const App = () => {
           <Toaster position="bottom-right" reverseOrder={false} />
         </div>
         <Header />
-        <Main className=" " />
+        <Main className="flex-grow " />
         <Footer />
       </div>
     </>
