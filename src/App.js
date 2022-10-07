@@ -1,5 +1,5 @@
 import "./App.css";
-
+import { Toaster } from "react-hot-toast";
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -8,8 +8,11 @@ const App = () => {
   return (
     <>
       <div className="flex flex-col h-screen w-full ">
+        <div>
+          <Toaster position="bottom-right" reverseOrder={false} />
+        </div>
         <Header />
-        <Main className="flex-grow " />
+        <Main className=" " />
         <Footer />
       </div>
     </>

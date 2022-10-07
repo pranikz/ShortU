@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LoadingIcon from "./LoadingIcon";
+import toast from 'react-hot-toast';
 
 const Shortner = () => {
   const [typedUrl, setTypedUrl] = useState(null);
@@ -25,15 +26,16 @@ const Shortner = () => {
       setLoading(false);
     }
 
-    const shortenUrl = data.result.short_link2;
+    const shortenUrl = data.result;
 
     setUrl(shortenUrl);
     setError(false);
     setLoading(false);
   };
+  const notify = () => toast.success('Successfully copied!');
 
   return (
-    <div className="mt-20 sm:mt-12">
+    <div className=" sm:mt-12">
       <form onSubmit={getShortURL}>
         <div className="sm:flex">
           <div className="min-w-0 flex-1">
@@ -55,22 +57,56 @@ const Shortner = () => {
           </div>
         </div>
       </form>
-      {loading && <LoadingIcon />}
+      <div className=" flex justify-center">{loading && <LoadingIcon />}</div>
+
       {url && (
         <div className="mt-5 sm:mt-5 bg-[#6C63FF] rounded-md p-5 shadow-md mobile-nav">
           <p className="text-gray-900 font-medium text-xl">
             Your shortened links :
           </p>
-          <div className="flex justify-between">
-            <p className="text-white font-bold text-2xl sm:text-4xl">{url}</p>
-            <button
-              className="block w-24 py-1 px-4 h-9 rounded-md shadow bg-gradient-to-r from-slate-900 to-slate-900 text-white font-bold hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-              onClick={() => {
-                navigator.clipboard.writeText(url);
-              }}
-            >
-              Copy it!
-            </button>
+          <div className="flex flex-col gap-4 py-3 md:py-5">
+            <div className="flex justify-between">
+              <p className="text-white font-bold text-xl sm:text-4xl">
+                {url.short_link}
+              </p>
+              <button
+                className="block w-24 py-1 px-4 h-9 rounded-md shadow bg-gradient-to-r from-slate-900 to-slate-900 text-white font-bold hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                onClick={() => {
+                  navigator.clipboard.writeText(url.short_link);
+                  notify();
+                }}
+              >
+                Copy it!
+              </button>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-white font-bold text-xl sm:text-4xl">
+                {url.short_link2}
+              </p>
+              <button
+                className="block w-24 py-1 px-4 h-9 rounded-md shadow bg-gradient-to-r from-slate-900 to-slate-900 text-white font-bold hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                onClick={() => {
+                  navigator.clipboard.writeText(url.short_link2);
+                  notify();
+                }}
+              >
+                Copy it!
+              </button>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-white font-bold text-xl sm:text-4xl">
+                {url.short_link3}
+              </p>
+              <button
+                className="block w-24 py-1 px-4 h-9 rounded-md shadow bg-gradient-to-r from-slate-900 to-slate-900 text-white font-bold hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                onClick={() => {
+                  navigator.clipboard.writeText(url.short_link3);
+                  notify();
+                }}
+              >
+                Copy it!
+              </button>
+            </div>
           </div>
         </div>
       )}
